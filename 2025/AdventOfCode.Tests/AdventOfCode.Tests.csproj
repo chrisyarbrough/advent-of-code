@@ -20,4 +20,9 @@
 	  <ProjectReference Include="..\AdventOfCode\AdventOfCode.csproj" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Compile Remove="PuzzleTemplateTests.cs" />
+	  <None Include="PuzzleTemplateTests.cs" />
+	</ItemGroup>
+
 </Project>
