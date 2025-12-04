@@ -1,6 +1,6 @@
 <Project>
 	<PropertyGroup>
-		<Nullable>enable</Nullable>
+		<Nullable>disable</Nullable>
 		<TargetFramework>net9.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
 	</PropertyGroup>

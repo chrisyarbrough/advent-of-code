@@ -18,10 +18,10 @@ class SolveCommand : Command
 			puzzle.InputFileName = InputFileName;
 
 		if (Part is 1 or null)
-			Console.WriteLine("Solution 1: " + puzzle.Solve(p => p.Part1));
+			Console.WriteLine(puzzle.Solve(p => p.Part1));
 
 		if (Part is 2 or null)
-			Console.WriteLine("Solution 2: " + puzzle.Solve(p => p.Part2));
+			Console.WriteLine(puzzle.Solve(p => p.Part2));
 
 		if (Part != null && Part != 1 && Part != 2)
 			Console.WriteLine($"Unknown part: '{Part}'. Enter '1' or '2'.");
