@@ -13,6 +13,7 @@ public class Day1 : Puzzle
 	{
 		int dial = 50;
 		return input
+			.Trim()
 			.Split(Environment.NewLine)
 			.Count(line =>
 			{
@@ -26,7 +27,7 @@ public class Day1 : Puzzle
 	public override object Part2(string input)
 	{
 		var safe = new Safe2(50);
-		var instructions = input.Split(Environment.NewLine);
+		var instructions = input.Trim().Split(Environment.NewLine);
 		foreach (var instruction in instructions)
 			safe.Rotate(instruction);
 		return safe.Password;

@@ -2,7 +2,7 @@ public class Day5 : Puzzle
 {
 	public override object Part1(string input)
 	{
-		string[] sections = input.Split("\n\n");
+		string[] sections = input.Trim().Split("\n\n");
 
 		List<(long start, long end)> freshIDRanges = sections[0]
 			.Split(Environment.NewLine)

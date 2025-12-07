@@ -1,13 +1,14 @@
 public class PuzzleTemplateTests
 {
-	private readonly Puzzle puzzle = new Day();
+	private const string input = """
+
+	                             """;
+
+	private readonly PuzzleTemplate puzzle = new PuzzleTemplate();
 
 	[Fact]
 	public void Part1_Example()
 	{
-		const string input = """
-		                     
-		                     """;
 		var result = puzzle.Part1(input);
 		Assert.Equal("XMAS", result);
 	}
@@ -22,9 +23,6 @@ public class PuzzleTemplateTests
 	[Fact]
 	public void Part2_Example()
 	{
-		const string input = """
-		                     
-		                     """;
 		var result = puzzle.Part2(input);
 		Assert.Equal("XMAS", result);
 	}

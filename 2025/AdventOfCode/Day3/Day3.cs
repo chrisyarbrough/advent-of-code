@@ -4,7 +4,7 @@ public class Day3 : Puzzle
 {
 	public override object Part1(string input)
 	{
-		return input
+		return input.Trim()
 			.Split(Environment.NewLine)
 			.Select(bank => FindLargestPossibleJoltage(bank))
 			.Sum();
@@ -12,7 +12,7 @@ public class Day3 : Puzzle
 
 	public override object Part2(string input)
 	{
-		return input
+		return input.Trim()
 			.Split(Environment.NewLine)
 			.Select(bank => FindLargestPossibleJoltage(bank, digits: 12))
 			.Sum();

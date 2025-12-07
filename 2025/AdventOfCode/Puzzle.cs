@@ -10,7 +10,7 @@ public abstract class Puzzle
 	/// </summary>
 	public object Solve(Func<Puzzle, Func<string, object>> function)
 	{
-		string input = File.ReadAllText($"{GetType().Name}/{InputFileName}").Trim();
+		string input = File.ReadAllText($"{GetType().Name}/{InputFileName}");
 		object result;
 		try
 		{
