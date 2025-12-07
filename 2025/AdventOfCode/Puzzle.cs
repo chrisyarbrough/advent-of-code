@@ -3,7 +3,7 @@ using JetBrains.Annotations;
 [UsedImplicitly(ImplicitUseTargetFlags.WithInheritors)]
 public abstract class Puzzle
 {
-	public string InputFileName { get; set; } = "Input.txt";
+	public string InputFileName { get; set; } = "input.txt";
 
 	/// <summary>
 	/// Uses the file Input.txt next to the script.
