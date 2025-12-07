@@ -8,7 +8,7 @@ class SetupCommand : Command
 	{
 		var builder = new ConfigurationBuilder();
 		builder.AddUserSecrets<Program>();
-		string? sessionCookie = builder.Build()["SessionCookie"];
+		string sessionCookie = builder.Build()["SessionCookie"];
 
 		if (sessionCookie == null)
 		{
