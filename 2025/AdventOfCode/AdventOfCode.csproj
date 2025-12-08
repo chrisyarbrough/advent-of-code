@@ -22,4 +22,9 @@
 		</None>
 	</ItemGroup>
 
+	<ItemGroup>
+		<Compile Remove="Day8/AOC_Day8_Unity/**/*.cs" />
+		<None Remove="Day8/AOC_Day8_Unity/**/*" />
+	</ItemGroup>
+
 </Project>
