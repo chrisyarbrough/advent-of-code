@@ -7,16 +7,14 @@ public class Day8 : Puzzle
 
 	public override object Part1(string input)
 	{
-		var connections = FindConnections(input);
-
 		List<HashSet<Position>> circuits = [];
 
 		HashSet<Position> FindCircuit(Position position)
 		{
-			return circuits.FirstOrDefault(circuit => circuit.Any(x => x == position));
+			return circuits.FirstOrDefault(circuit => circuit.Contains(position));
 		}
 
-		foreach (var connection in connections)
+		foreach (var connection in FindConnections(input))
 		{
 			var circuit1 = FindCircuit(connection.Item1);
 			var circuit2 = FindCircuit(connection.Item2);
@@ -51,104 +49,73 @@ public class Day8 : Puzzle
 			.Aggregate((a, b) => a * b);
 	}
 
-	public Connection[] FindConnections(string input)
+	public List<Connection> FindConnections(string input)
 	{
-		List<Connection> allConnections = FindAllConnections(input);
-		List<Connection> shortestConnectionsInOrder = [];
+		HashSet<Connection> allConnections = FindAllConnections(input);
 
-		while (allConnections.Count > 0 && shortestConnectionsInOrder.Count < MaxCount)
+		// Starting with the shortest connection.
+		List<Connection> shortestConnections = new List<Connection>(capacity: MaxCount);
+
+		while (allConnections.Count > 0 && shortestConnections.Count < MaxCount)
 		{
 			double shortestLength = double.MaxValue;
 			Connection shortestConnection = default;
 			foreach (Connection connection in allConnections)
 			{
-				double length = Length(connection);
+				double length = LengthSquared(connection);
 				if (length < shortestLength)
 				{
 					shortestLength = length;
 					shortestConnection = connection;
 				}
 			}
-			shortestConnectionsInOrder.Add(shortestConnection);
+			shortestConnections.Add(shortestConnection);
 			allConnections.Remove(shortestConnection);
 		}
 
-		return shortestConnectionsInOrder.ToArray();
+		return shortestConnections;
 	}
 
-	private static Position[] GetPositions(string input)
-	{
-		return input
-			.Trim()
-			.Split(Environment.NewLine)
-			.Select(ParsePosition)
-			.ToArray();
-	}
-
-	private List<Connection> FindAllConnections(string input)
+	private HashSet<Connection> FindAllConnections(string input)
 	{
 		Position[] positions = GetPositions(input);
 
-		List<Connection> connections = [];
-
-		for (int i = 0; i < positions.Length; i++)
-		{
-			var p1 = positions[i];
-			for (int j = i + 1; j < positions.Length; j++)
-			{
-				var p2 = positions[j];
-				connections.Add((p1, p2));
-			}
-		}
-
-		return connections;
+		return positions
+			.SelectMany((p1, i) => positions
+				.Skip(i + 1)
+				.Select(p2 => (p1, p2)))
+			.ToHashSet();
 	}
 
-	public static Connection FindClosestPositions(string input)
+	private static Position[] GetPositions(string input) => input
+		.Trim()
+		.Split(Environment.NewLine)
+		.Select(ParsePosition)
+		.ToArray();
+
+	private static Position ParsePosition(string line)
 	{
-		Position[] positions = GetPositions(input);
-
-		double shortestDistance = float.MaxValue;
-		Position closestA = default;
-		Position closestB = default;
-		for (int i = 0; i < positions.Length; i++)
-		{
-			var p1 = positions[i];
-			for (int j = i + 1; j < positions.Length; j++)
-			{
-				var p2 = positions[j];
-				double distance = DistanceBetween(p1, p2);
-				if (distance < shortestDistance)
-				{
-					shortestDistance = distance;
-					closestA = p1;
-					closestB = p2;
-				}
-			}
-		}
-		return (closestA, closestB);
-	}
-
-	public static double Length(Connection connection)
-		=> DistanceBetween(connection.Item1, connection.Item2);
-
-	public static double DistanceBetween(Position p1, Position p2)
-	{
-		return Math.Sqrt(
-			Math.Pow(p2.x - p1.x, 2) +
-			Math.Pow(p2.y - p1.y, 2) +
-			Math.Pow(p2.z - p1.z, 2)
+		var split = line.Split(',');
+		return (
+			x: int.Parse(split[0]),
+			y: int.Parse(split[1]),
+			z: int.Parse(split[2])
 		);
+	}
+
+	public static double LengthSquared(Connection connection)
+	{
+		var p1 = connection.Item1;
+		var p2 = connection.Item2;
+		// Implementing this manually is much faster than Math.Pow(p2.x - p1.x, 2).
+		double x = p2.x - p1.x;
+		double y = p2.y - p1.y;
+		double z = p2.z - p1.z;
+		return (x * x) + (y * y) + (z * z);
 	}
 
 	public override object Part2(string input)
 	{
 		return "";
-	}
-
-	private static Position ParsePosition(string line)
-	{
-		var split = line.Split(',');
-		return (int.Parse(split[0]), int.Parse(split[1]), int.Parse(split[2]));
 	}
 }

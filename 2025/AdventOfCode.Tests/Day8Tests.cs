@@ -36,34 +36,25 @@ public class Day8Tests
 	}
 
 	[Theory]
-	[InlineData(2,
+	[InlineData(4,
 		4, 0, 0,
 		6, 0, 0)]
-	[InlineData(2,
+	[InlineData(4,
 		4, 0, 0,
 		2, 0, 0)]
-	[InlineData(6,
+	[InlineData(36,
 		-4, 0, 0,
 		+2, 0, 0)]
-	public void Part1_DistanceBetween(double expected, int x1, int y1, int z1, int x2, int y2, int z2)
+	public void Part1_LengthSquared(double expected, int x1, int y1, int z1, int x2, int y2, int z2)
 	{
 		var p1 = (x: x1, y: y1, z: z1);
 		var p2 = (x: x2, y: y2, z: z2);
 
-		double distance = Day8.DistanceBetween(p1, p2);
+		double distance = Day8.LengthSquared((p1, p2));
 		Assert.Equal(expected, distance);
 
-		distance = Day8.DistanceBetween(p2, p1);
+		distance = Day8.LengthSquared((p2, p1));
 		Assert.Equal(expected, distance);
-	}
-
-	[Fact]
-	public void Part1_FindClosestPositions()
-	{
-		// 162,817,812 and 425,690,689
-		var result = Day8.FindClosestPositions(input);
-		Assert.Equal((162, 817, 812), result.Item1);
-		Assert.Equal((425, 690, 689), result.Item2);
 	}
 
 	[Fact]
