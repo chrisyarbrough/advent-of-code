@@ -83,14 +83,18 @@ public class Day8Tests
 	[Fact]
 	public void Part2_Example()
 	{
+		// Expected closing connection: 216,146,977 and 117,168,530
+		puzzle.MaxCount = 10;
 		var result = puzzle.Part2(input);
-		Assert.Equal("XMAS", result);
+		Assert.Equal(25272L, result);
 	}
 
 	[Fact]
 	public void Part2_Solution()
 	{
+		puzzle.MaxCount = 1000;
 		var solution = puzzle.Solve(p => p.Part2);
 		Assert.Equal(0, solution);
+		Assert.NotEqual(4083022176L, solution); // too high
 	}
 }

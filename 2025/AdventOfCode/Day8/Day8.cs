@@ -54,7 +54,7 @@ public class Day8 : Puzzle
 		HashSet<Connection> allConnections = FindAllConnections(input);
 
 		// Starting with the shortest connection.
-		List<Connection> shortestConnections = new List<Connection>(capacity: MaxCount);
+		List<Connection> shortestConnections = [];
 
 		while (allConnections.Count > 0 && shortestConnections.Count < MaxCount)
 		{
@@ -116,6 +116,51 @@ public class Day8 : Puzzle
 
 	public override object Part2(string input)
 	{
-		return "";
+		List<HashSet<Position>> circuits = [];
+
+		HashSet<Position> FindCircuit(Position position)
+		{
+			return circuits.FirstOrDefault(circuit => circuit.Contains(position));
+		}
+
+		int positionCount = GetPositions(input).Length;
+
+		Connection closingConnection = default;
+
+		foreach (var connection in FindConnections(input))
+		{
+			var circuit1 = FindCircuit(connection.Item1);
+			var circuit2 = FindCircuit(connection.Item2);
+
+			// Merge circuits.
+			if (circuit1 != null && circuit2 != null && circuit1 != circuit2)
+			{
+				foreach (var p in circuit2)
+					circuit1.Add(p);
+				circuits.Remove(circuit2);
+				continue;
+			}
+
+			var circuit = circuit1 ?? circuit2;
+			if (circuit != null)
+			{
+				// Add to existing circuit.
+				circuit.Add(connection.Item1);
+				circuit.Add(connection.Item2);
+			}
+			else
+			{
+				// Start new circuit.
+				circuits.Add([connection.Item1, connection.Item2]);
+			}
+
+			if (circuits.Count == 1 && circuits[0].Count == positionCount)
+			{
+				closingConnection = connection;
+				break;
+			}
+		}
+
+		return (long)closingConnection.Item1.x * (long)closingConnection.Item2.x;
 	}
 }
