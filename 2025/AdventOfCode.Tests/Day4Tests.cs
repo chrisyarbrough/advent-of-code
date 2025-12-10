@@ -1,12 +1,11 @@
 public class Day4Tests
 {
-	private Day4 day4 = new Day4()
+	private Day4 day4 = new Day4();
+
+	public Day4Tests()
 	{
-		RenderGrid = () =>
-		{
-			// Disabled for tests.
-		},
-	};
+		day4.Renderer.Enabled = false;
+	}
 
 	private const string exampleInput = """
 	                                    ..@@.@@@@.

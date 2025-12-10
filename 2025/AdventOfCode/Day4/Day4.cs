@@ -1,16 +1,8 @@
 public class Day4 : Puzzle
 {
-	/// <summary>
-	/// Override to disable rendering in tests.
-	/// </summary>
-	public Action RenderGrid;
+	public ConsoleRenderer Renderer;
 
 	private char[,] grid;
-
-	public Day4()
-	{
-		RenderGrid = RenderToConsole;
-	}
 
 	public override object Part1(string input)
 	{
@@ -72,7 +64,7 @@ public class Day4 : Puzzle
 	public override object Part2(string input)
 	{
 		grid = ConvertToGrid(input);
-		RenderGrid();
+		Renderer.Render(grid);
 
 		int accessibleRollsCountTotal = 0;
 
@@ -84,24 +76,10 @@ public class Day4 : Puzzle
 			accessibleRollsCount++;
 			accessibleRollsCountTotal++;
 		}
-		RenderGrid();
+		Renderer.Render(grid);
 		if (accessibleRollsCount > 0)
 			goto removeRolls;
 
 		return accessibleRollsCountTotal;
-	}
-
-	public void RenderToConsole()
-	{
-		Console.Clear();
-		string s = string.Empty;
-		for (int y = 0; y < grid.GetLength(0); y++)
-		{
-			for (int x = 0; x < grid.GetLength(1); x++)
-				s += grid[y, x];
-			s += Environment.NewLine;
-		}
-		Console.WriteLine(s);
-		Console.ReadKey(intercept: true);
 	}
 }

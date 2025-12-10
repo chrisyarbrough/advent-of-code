@@ -2,14 +2,9 @@ using System.Diagnostics.CodeAnalysis;
 
 public class Day7 : Puzzle
 {
-	public Action RenderGrid;
+	public ConsoleRenderer Renderer;
 
 	private char[][] grid;
-
-	public Day7()
-	{
-		RenderGrid = RenderToConsole;
-	}
 
 	public override object Part1(string input)
 	{
@@ -19,13 +14,13 @@ public class Day7 : Puzzle
 			.Select(row => row.ToCharArray())
 			.ToArray();
 
-		RenderGrid();
+		Renderer.Render(grid);
 
 		int startX = Array.IndexOf(grid[0], 'S');
 		int splitCount = 0;
 		Simulate(1, startX, ref splitCount);
 
-		RenderGrid();
+		Renderer.Render(grid);
 
 		return splitCount;
 	}
@@ -56,19 +51,5 @@ public class Day7 : Puzzle
 	public override object Part2(string input)
 	{
 		return "";
-	}
-
-	public void RenderToConsole()
-	{
-		Console.Clear();
-		string s = string.Empty;
-		for (int y = 0; y < grid.Length; y++)
-		{
-			for (int x = 0; x < grid[y].Length; x++)
-				s += grid[y][x];
-			s += Environment.NewLine;
-		}
-		Console.WriteLine(s);
-		Console.ReadKey(intercept: true);
 	}
 }

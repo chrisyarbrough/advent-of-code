@@ -1,12 +1,11 @@
 public class Day7Tests
 {
-	private readonly Day7 puzzle = new Day7
+	private readonly Day7 puzzle = new Day7();
+
+	public Day7Tests()
 	{
-		RenderGrid = () =>
-		{
-			// Disable grid rendering in tests.
-		},
-	};
+		puzzle.Renderer.Enabled = false;
+	}
 
 	[Fact]
 	public void Part1_Example()
