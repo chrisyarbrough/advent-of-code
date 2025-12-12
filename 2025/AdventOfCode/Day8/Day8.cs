@@ -161,6 +161,6 @@ public class Day8 : Puzzle
 			}
 		}
 
-		return (long)closingConnection.Item1.x * (long)closingConnection.Item2.x;
+		return (long)closingConnection.Item1.x * closingConnection.Item2.x;
 	}
 }

@@ -2,7 +2,7 @@ using System.Diagnostics;
 
 public class Day6 : Puzzle
 {
-	Dictionary<string, Func<IEnumerable<long>, long>> operations = new()
+	private Dictionary<string, Func<IEnumerable<long>, long>> operations = new()
 	{
 		{ "+", values => values.Sum() },
 		{ "*", values => values.Aggregate((x, y) => x * y) },
