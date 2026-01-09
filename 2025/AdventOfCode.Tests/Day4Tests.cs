@@ -7,18 +7,7 @@ public class Day4Tests
 		day4.Renderer.Enabled = false;
 	}
 
-	private const string exampleInput = """
-	                                    ..@@.@@@@.
-	                                    @@@.@.@.@@
-	                                    @@@@@.@.@@
-	                                    @.@@@@..@.
-	                                    @@.@@@@.@@
-	                                    .@@@@@@@.@
-	                                    .@.@.@.@@@
-	                                    @.@@@.@@@@
-	                                    .@@@@@@@@.
-	                                    @.@.@@@.@.
-	                                    """;
+	private string exampleInput = File.ReadAllText("Day4/example.txt");
 
 	[Fact]
 	public void Part1_Example()

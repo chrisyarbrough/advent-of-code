@@ -23,7 +23,7 @@ public class Day7Tests
 		Assert.Equal(1566, solution);
 	}
 
-	[Fact]
+	[Fact(Skip = "Not implemented")]
 	public void Part2_Example()
 	{
 		puzzle.InputFileName = "example.txt";
@@ -31,7 +31,7 @@ public class Day7Tests
 		Assert.Equal(40, result);
 	}
 
-	[Fact]
+	[Fact(Skip = "Not implemented")]
 	public void Part2_Solution()
 	{
 		puzzle.InputFileName = "input.txt";

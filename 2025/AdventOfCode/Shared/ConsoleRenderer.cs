@@ -4,7 +4,7 @@ public class ConsoleRenderer
 
 	public void Render(char[,] grid)
 	{
-		if (Enabled == false)
+		if (!Enabled)
 			return;
 
 		Console.Clear();
@@ -22,7 +22,7 @@ public class ConsoleRenderer
 
 	public void Render(char[][] grid)
 	{
-		if (Enabled == false)
+		if (!Enabled)
 			return;
 
 		Console.Clear();

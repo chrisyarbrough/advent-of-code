@@ -13,8 +13,7 @@ public class Day1 : Puzzle
 	{
 		int dial = 50;
 		return input
-			.Trim()
-			.Split(Environment.NewLine)
+			.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries)
 			.Count(line =>
 			{
 				int steps = int.Parse(line[1..]);

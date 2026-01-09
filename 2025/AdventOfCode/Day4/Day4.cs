@@ -1,6 +1,6 @@
 public class Day4 : Puzzle
 {
-	public ConsoleRenderer Renderer;
+	public readonly ConsoleRenderer Renderer = new ConsoleRenderer();
 
 	private char[,] grid;
 

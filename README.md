@@ -2,6 +2,11 @@
 
 My personal advent of code solutions. Beware of spoilers!
 
+## Prerequisites
+
+- Check the [Directory.Build.props](../Directory.Build.props) file
+- Account at [https://adventofcode.com](https://adventofcode.com)
+
 ## Setup
 
 Retrieve your session cookie:
@@ -30,3 +35,17 @@ Code your solution and then either run the unit tests or print the solution like
 ```bash
 dotner run -- solve 1
 ```
+
+Run a single part (1 or 2):
+
+```bash
+dotner run -- solve 1 --part 1
+```
+
+Run a part with a different input file (e.g. the example):
+
+```bash
+dotner run -- solve 1 --part 2 --input example.txt
+```
+
+By default, the solve command reads the `input.txt` file.

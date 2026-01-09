@@ -2,7 +2,7 @@ using System.Diagnostics.CodeAnalysis;
 
 public class Day7 : Puzzle
 {
-	public ConsoleRenderer Renderer;
+	public readonly ConsoleRenderer Renderer = new ConsoleRenderer();
 
 	private char[][] grid;
 
